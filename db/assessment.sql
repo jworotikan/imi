@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.1.28-MariaDB - mariadb.org binary distribution
+-- Server version:               10.1.32-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win32
--- HeidiSQL Version:             9.4.0.5125
+-- HeidiSQL Version:             9.5.0.5196
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,12 +12,12 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumping database structure for imi_test
-DROP DATABASE IF EXISTS `imi_test`;
-CREATE DATABASE IF NOT EXISTS `imi_test` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `imi_test`;
+-- Dumping database structure for imanagem_asm
+DROP DATABASE IF EXISTS `imanagem_asm`;
+CREATE DATABASE IF NOT EXISTS `imanagem_asm` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `imanagem_asm`;
 
--- Dumping structure for table imi_test.db_answ
+-- Dumping structure for table imanagem_asm.db_answ
 DROP TABLE IF EXISTS `db_answ`;
 CREATE TABLE IF NOT EXISTS `db_answ` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `db_answ` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table imi_test.db_answ: ~3 rows (approximately)
+-- Dumping data for table imanagem_asm.db_answ: ~3 rows (approximately)
 DELETE FROM `db_answ`;
 /*!40000 ALTER TABLE `db_answ` DISABLE KEYS */;
 INSERT INTO `db_answ` (`id`, `answ_type`, `answ`, `answ_pos`) VALUES
@@ -36,26 +36,27 @@ INSERT INTO `db_answ` (`id`, `answ_type`, `answ`, `answ_pos`) VALUES
 	(3, 1, 'Jarang', 3);
 /*!40000 ALTER TABLE `db_answ` ENABLE KEYS */;
 
--- Dumping structure for table imi_test.db_login
+-- Dumping structure for table imanagem_asm.db_login
 DROP TABLE IF EXISTS `db_login`;
 CREATE TABLE IF NOT EXISTS `db_login` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `season_name` text,
-  `pwd` varchar(50) DEFAULT NULL,
+  `pwd_view` varchar(50) DEFAULT NULL,
+  `pwd_key` varchar(50) DEFAULT NULL,
   `test_id` int(11) DEFAULT NULL,
   `timestart` datetime DEFAULT NULL,
   `timeend` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table imi_test.db_login: ~0 rows (approximately)
+-- Dumping data for table imanagem_asm.db_login: ~1 rows (approximately)
 DELETE FROM `db_login`;
 /*!40000 ALTER TABLE `db_login` DISABLE KEYS */;
-INSERT INTO `db_login` (`id`, `season_name`, `pwd`, `test_id`, `timestart`, `timeend`) VALUES
-	(1, 'Batch 1', '123456', 1, NULL, NULL);
+INSERT INTO `db_login` (`id`, `season_name`, `pwd_view`, `pwd_key`, `test_id`, `timestart`, `timeend`) VALUES
+	(1, 'Batch 1', '12345', '827ccb0eea8a706c4c34a16891f84e7b', 1, NULL, NULL);
 /*!40000 ALTER TABLE `db_login` ENABLE KEYS */;
 
--- Dumping structure for table imi_test.db_point
+-- Dumping structure for table imanagem_asm.db_point
 DROP TABLE IF EXISTS `db_point`;
 CREATE TABLE IF NOT EXISTS `db_point` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -66,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `db_point` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
--- Dumping data for table imi_test.db_point: ~24 rows (approximately)
+-- Dumping data for table imanagem_asm.db_point: ~24 rows (approximately)
 DELETE FROM `db_point`;
 /*!40000 ALTER TABLE `db_point` DISABLE KEYS */;
 INSERT INTO `db_point` (`id`, `test_id`, `qst_id`, `answ_id`, `ans_point`) VALUES
@@ -96,7 +97,7 @@ INSERT INTO `db_point` (`id`, `test_id`, `qst_id`, `answ_id`, `ans_point`) VALUE
 	(24, 1, 8, 3, 1);
 /*!40000 ALTER TABLE `db_point` ENABLE KEYS */;
 
--- Dumping structure for table imi_test.db_qst
+-- Dumping structure for table imanagem_asm.db_qst
 DROP TABLE IF EXISTS `db_qst`;
 CREATE TABLE IF NOT EXISTS `db_qst` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -109,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `db_qst` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Dumping data for table imi_test.db_qst: ~8 rows (approximately)
+-- Dumping data for table imanagem_asm.db_qst: ~8 rows (approximately)
 DELETE FROM `db_qst`;
 /*!40000 ALTER TABLE `db_qst` DISABLE KEYS */;
 INSERT INTO `db_qst` (`id`, `test_id`, `qst`, `ans_type`, `page`, `created_by`, `created_date`) VALUES
@@ -123,7 +124,24 @@ INSERT INTO `db_qst` (`id`, `test_id`, `qst`, `ans_type`, `page`, `created_by`, 
 	(8, 1, 'Saya memberitahukan kepada orang orang yang terlibat dan terpengaruh dalam pendelegasian tugas tersebut', 1, 8, NULL, '2018-07-25 21:24:50');
 /*!40000 ALTER TABLE `db_qst` ENABLE KEYS */;
 
--- Dumping structure for table imi_test.db_result
+-- Dumping structure for table imanagem_asm.db_qstlist
+DROP TABLE IF EXISTS `db_qstlist`;
+CREATE TABLE IF NOT EXISTS `db_qstlist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pwd_id` int(11) DEFAULT NULL,
+  `qst_id` int(11) DEFAULT NULL,
+  `qst_pos` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table imanagem_asm.db_qstlist: ~1 rows (approximately)
+DELETE FROM `db_qstlist`;
+/*!40000 ALTER TABLE `db_qstlist` DISABLE KEYS */;
+INSERT INTO `db_qstlist` (`id`, `pwd_id`, `qst_id`, `qst_pos`) VALUES
+	(1, 1, 1, 1);
+/*!40000 ALTER TABLE `db_qstlist` ENABLE KEYS */;
+
+-- Dumping structure for table imanagem_asm.db_result
 DROP TABLE IF EXISTS `db_result`;
 CREATE TABLE IF NOT EXISTS `db_result` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -136,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `db_result` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Dumping data for table imi_test.db_result: ~8 rows (approximately)
+-- Dumping data for table imanagem_asm.db_result: ~8 rows (approximately)
 DELETE FROM `db_result`;
 /*!40000 ALTER TABLE `db_result` DISABLE KEYS */;
 INSERT INTO `db_result` (`id`, `name`, `test_id`, `qst_id`, `ans_id`, `ans_point`, `created_date`) VALUES
@@ -150,7 +168,7 @@ INSERT INTO `db_result` (`id`, `name`, `test_id`, `qst_id`, `ans_id`, `ans_point
 	(8, 'Jonathan', '1', 8, 3, 1, '2018-07-26 22:19:35');
 /*!40000 ALTER TABLE `db_result` ENABLE KEYS */;
 
--- Dumping structure for table imi_test.db_resultinfo
+-- Dumping structure for table imanagem_asm.db_resultinfo
 DROP TABLE IF EXISTS `db_resultinfo`;
 CREATE TABLE IF NOT EXISTS `db_resultinfo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -161,14 +179,14 @@ CREATE TABLE IF NOT EXISTS `db_resultinfo` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table imi_test.db_resultinfo: ~0 rows (approximately)
+-- Dumping data for table imanagem_asm.db_resultinfo: ~1 rows (approximately)
 DELETE FROM `db_resultinfo`;
 /*!40000 ALTER TABLE `db_resultinfo` DISABLE KEYS */;
 INSERT INTO `db_resultinfo` (`id`, `test_id`, `point_start`, `point_end`, `result_info`) VALUES
 	(1, 1, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `db_resultinfo` ENABLE KEYS */;
 
--- Dumping structure for table imi_test.db_testname
+-- Dumping structure for table imanagem_asm.db_testname
 DROP TABLE IF EXISTS `db_testname`;
 CREATE TABLE IF NOT EXISTS `db_testname` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -178,11 +196,11 @@ CREATE TABLE IF NOT EXISTS `db_testname` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table imi_test.db_testname: ~0 rows (approximately)
+-- Dumping data for table imanagem_asm.db_testname: ~1 rows (approximately)
 DELETE FROM `db_testname`;
 /*!40000 ALTER TABLE `db_testname` DISABLE KEYS */;
 INSERT INTO `db_testname` (`id`, `name`, `created_by`, `created_date`) VALUES
-	(1, '', 1, '2018-07-25 13:06:00');
+	(1, 'TEST PENDELEGASIAN', 1, '2018-07-25 13:06:00');
 /*!40000 ALTER TABLE `db_testname` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
