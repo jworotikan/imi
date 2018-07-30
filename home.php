@@ -4,7 +4,10 @@ if ($_GET['link'] == 'test') {
 	$getquestion=$db_conn->query("SELECT * from db_qst where test_id = $test_id");
 	$countrow = mysqli_num_rows($getquestion);
 } else if ($_GET['link'] == 'result') {
-	# code...
+	$getname = $db_conn->query("SELECT * from db_usertest where id = $user_id");
+	while($usertest=$getname->fetch_array()):
+		$username = $usertest['uname'];
+	endwhile;
 }
 
 ?>

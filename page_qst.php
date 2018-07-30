@@ -21,6 +21,7 @@
 				$answtype = $qsthow['ans_type'];
 				$qstnumb = $qsthow['page'];
 				$qstid = $qsthow['id'];
+				$qstpage = $qsthow['page'];
 				?>
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -55,7 +56,7 @@
 										ON a.id = b.answ_id
 										where a.answ_type = $answtype
 										and b.test_id = $test_id
-										and b.qst_id = $qstid
+										and b.qst_page = $qstpage
 										");
 								    while($answr=$getansw->fetch_array()):
 								    	$radio_id = $answr['answ_id'];
